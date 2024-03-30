@@ -1,0 +1,30 @@
+﻿
+SELECT *
+FROM STUDIO
+
+--1.Напишете заявка, която извежда адреса на студио ‘Disney’
+
+SELECT ADDRESS
+FROM STUDIO
+WHERE NAME='Disney'
+--2. Напишете заявка, която извежда рождената дата на актьора Jack Nicholson
+SELECT *
+FROM MOVIESTAR
+
+SELECT BIRTHDATE
+FROM MOVIESTAR
+WHERE NAME='Jack Nicholson'
+-- 3. Напишете заявка, която извежда имената на актьорите, които саучаствали във филм от 1980 или във филм, в чието заглавие има думата ‘Knight’
+SELECT *
+FROM STARSIN
+--..
+SELECT STARNAME
+FROM STARSIN
+WHERE MOVIEYEAR=1980 OR MOVIETITLE ='Knight'
+--4. Напишете заявка, която извежда имената на продуцентите с нетниактиви над 10 000 000 долара
+SELECT *
+FROM MOVIEEXEC
+SELECT NAME
+FROM MOVIEEXEC
+WHERE NETWORTH>10000000
+--5. Напишете заявка, която извежда имената на актьорите, които са мъже или живеят на Prefect Rd.SELECT *FROM MOVIESTARSELECT NAMEFROM  MOVIESTARWHERE GENDER='M' OR ADDRESS='Perfect Rd'
