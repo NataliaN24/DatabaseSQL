@@ -42,6 +42,16 @@ AND S.CLASS IN
 			   GROUP BY CLASS 
 			   HAVING COUNT(NAME)>2)
 GROUP BY S.CLASS
+	--OR
+SELECT COUNT(S.NAME)AS NO,S.CLASS
+FROM SHIPS S JOIN OUTCOMES O ON  S.NAME=O.SHIP
+GROUP BY S.CLASS,O.RESULT
+HAVING S.CLASS IN (SELECT  CLASS
+                  FROM SHIPS 
+				  GROUP BY CLASS
+				  HAVING COUNT(NAME)>2
+				  )
+				  AND O.RESULT='SUNK';
 
 --7. Напишете заявка, която извежда средния калибър на оръдията на корабите за
 --всяка страна.
