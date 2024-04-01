@@ -43,7 +43,16 @@ SELECT NAME
 FROM MOVIESTAR M1
 WHERE GENDER='M' AND BIRTHDATE >=ALL(SELECT  BIRTHDATE
                                 FROM MOVIESTAR M2
-								WHERE GENDER='M' );
+				WHERE GENDER='M' );
+--or
+SELECT NAME
+FROM MOVIESTAR
+WHERE GENDER='M'
+GROUP BY NAME,BIRTHDATE
+HAVING BIRTHDATE=   (  SELECT MAX(BIRTHDATE)
+                        FROM MOVIESTAR
+		        WHERE GENDER='M')
+						
 						
 --7. Напишете заявка, която извежда име на актьор и име на студио за тези
 --актьори, участвали в най-много филми на това студио.
