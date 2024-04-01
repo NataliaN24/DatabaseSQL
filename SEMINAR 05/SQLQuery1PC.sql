@@ -1,21 +1,25 @@
 --1Напишете заявка, която извежда средната честота на персоналните компютри.
 SELECT AVG(SPEED) AS AVG_SPEED
 FROM PC
+	
 --2. Напишете заявка, която извежда средния размер на екраните на лаптопите за 
 --всеки производител.
 SELECT AVG(SCREEN) AS AVG_SCREEN,PRODUCT.MAKER   AS MAKER
 FROM LAPTOP JOIN PRODUCT ON LAPTOP.MODEL=PRODUCT.model
 GROUP BY  PRODUCT.maker;
+
 --3. Напишете заявка, която извежда средната честота на лаптопите с цена над 1000.
 SELECT AVG(SPEED) as AVGSPEED
 FROM LAPTOP
 WHERE PRICE>1000
+	
 --4. Напишете заявка, която извежда средната цена на персоналните компютри,
 --произведени от производител ‘A’.
 SELECT AVG(PRICE) AS PRICE ,PRODUCT.MAKER AS MAKER
 FROM PC JOIN product ON PC.MODEL=PRODUCT.model
 WHERE MAKER='A'
 GROUP BY PRODUCT.MAKER;
+
 --5. Напишете заявка, която извежда средната цена на персоналните компютри и 
 --лаптопите за производител ‘B’
 SELECT AVG(PRICE)
@@ -31,6 +35,7 @@ FROM  (SELECT  L.MODEL ,L.PRICE
 SELECT AVG(PRICE) AS PRICE ,SPEED
 FROM PC 
 GROUP BY SPEED
+	
 --7. Напишете заявка, която извежда производителите, които са произвели поне 3 
 --различни персонални компютъра (с различен код).
 SELECT PRODUCT.MAKER,COUNT(CODE) AS CODE 
@@ -51,10 +56,10 @@ SELECT AVG(PC.PRICE) AS AVERAGE ,PC.speed
 FROM PC
 WHERE PC.speed>800
 GROUP BY PC.SPEED
+	
 --10.Напишете заявка, която извежда средния размер на диска на тези персонални 
 --компютри, произведени от производители, които произвеждат и принтери.
 --Резултатът да се изведе за всеки отделен производител.
-
 SELECT P.MAKER, AVG(PC.HD) AS Avg_HD
 FROM PC  JOIN PRODUCT P ON PC.MODEL = P.MODEL
 WHERE P.MAKER IN (
