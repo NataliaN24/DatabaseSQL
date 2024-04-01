@@ -17,13 +17,21 @@ WHERE O.RESULT ='sunk' OR O.RESULT IS NULL
 GROUP BY  C.COUNTRY
 --4. Напишете заявка, която извежда име на битките, които са по-мащабни (с
 --повече участващи кораби) от битката при Guadalcanal.
+	
 SELECT B.NAME
 FROM BATTLES B JOIN OUTCOMES O ON B.NAME=O.BATTLE
 GROUP BY B.NAME 
 HAVING COUNT(O.SHIP)>(SELECT COUNT(O2.SHIP)
                       FROM OUTCOMES O2
 					  WHERE O2.BATTLE='Guadalcanal');
-  
+  --OR
+SELECT BATTLE
+FROM OUTCOMES 
+GROUP BY BATTLE
+HAVING COUNT(SHIP)>(SELECT COUNT(SHIP)
+                   FROM OUTCOMES 
+		    WHERE BATTLE='Guadalcanal');
+
 --5. Напишете заявка, която извежда име на битките, които са по-мащабни (с
 --повече участващи страни) от битката при Surigao Strait.
 SELECT O.BATTLE
@@ -59,7 +67,8 @@ WHERE O.RESULT = 'ok'
          AND OUTCOMES.SHIP = O.SHIP AND
                BATTLES.DATE < B.DATE)
 --8. Изведете име на корабите, които са били увредени в битка, но са били
---поправени и по-късно са победили в по-мащабна битка (с повече кораби).SELECT O.SHIP
+--поправени и по-късно са победили в по-мащабна битка (с повече кораби).
+SELECT O.SHIP
 FROM OUTCOMES AS O
          JOIN BATTLES AS B
               ON O.BATTLE = B.NAME
