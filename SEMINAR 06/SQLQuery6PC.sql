@@ -3,6 +3,12 @@
 SELECT MODEL,CODE,SCREEN
 FROM LAPTOP
 WHERE SCREEN=15 OR SCREEN =11
+	--OR
+SELECT MODEL,CODE,SCREEN
+FROM LAPTOP
+GROUP BY MODEL,SCREEN,CODE
+HAVING SCREEN =15 OR SCREEN=11;
+
 --2. Да се изведат различните модели компютри, чиято цена е по-ниска от найевтиния лаптоп, произвеждан от същия производител.
 --1st SOLUTION
 SELECT  DISTINCT P.model
