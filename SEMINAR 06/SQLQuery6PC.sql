@@ -25,6 +25,13 @@ HAVING PC.PRICE <(SELECT  TOP 1 LAPTOP.PRICE
 			   GROUP BY LAPTOP.MODEL,LAPTOP.PRICE,P2.MAKER
 			   HAVING  P1.maker=P2.maker
 			   ORDER BY LAPTOP.PRICE);
+--3rd  solution 
+SELECT DISTINCT PC.MODEL
+FROM PC JOIN PRODUCT P ON PC.model=P.model
+GROUP BY PC.MODEL,PC.PRICE,P.MAKER
+HAVING PC.PRICE<(SELECT TOP 1 L.PRICE
+                  FROM LAPTOP L JOIN PRODUCT P2 ON L.MODEL=P2.MODEL
+				  WHERE P.MAKER=P2.MAKER)
 
 --3. Един модел компютри може да се предлага в няколко разновидности с
 --различна цена. Да се изведат тези модели компютри, чиято средна цена (на
