@@ -4,6 +4,7 @@
 SELECT DISTINCT product.maker,laptop.speed
 FROM   product JOIN laptop ON product.model=laptop.model
 WHERE laptop.hd>=9
+  
 --2. Напишете заявка, която извежда модел и цена на продуктите, произведени от производител с име B.
 SELECT  product.model ,printer.price
 FROM product JOIN printer ON product.model=printer.model
@@ -36,7 +37,15 @@ FROM PC  JOIN PC AS PC1 ON PC.hd=PC1.hd AND PC.code<>PC1.code
 
 SELECT DISTINCT PC.model AS MODEL ,PC1.model AS MODEL
 FROM PC JOIN PC AS PC1 ON  PC.model<PC1.model AND PC.speed=PC1.speed  AND PC.ram=PC1.ram
---6. Напишете заявка, която извежда производителите на поне два различни персонални компютъра с честота поне 400.SELECT  DISTINCT PRODUCT.makerFROM product JOIN PC ON PRODUCT.model=PC.model              JOIN PC AS PC1 ON PRODUCT.model=PC1.model AND PC.code<>PC1.code WHERE PC.speed>=400 AND PC1.speed>=400;SELECT DISTINCT P.maker
+--6. Напишете заявка, която извежда производителите на поне два различни персонални компютъра с честота поне 400.
+
+SELECT  DISTINCT PRODUCT.maker
+FROM product JOIN PC ON PRODUCT.model=PC.model 
+             JOIN PC AS PC1 ON PRODUCT.model=PC1.model AND PC.code<>PC1.code 
+WHERE PC.speed>=400 AND PC1.speed>=400;
+
+
+SELECT DISTINCT P.maker
 FROM product AS P
 JOIN PC AS PC1 ON P.model = PC1.model
 JOIN PC AS PC2 ON P.model = PC2.model
